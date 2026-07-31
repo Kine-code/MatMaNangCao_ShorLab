@@ -1,0 +1,129 @@
+{
+  "project": {
+    "name": "ShorLab",
+    "course": "Mật mã nâng cao",
+    "team": [
+      {
+        "name": "Dương Công Kiên",
+        "student_id": "B25CHKH072",
+        "role": "Nhóm trưởng"
+      },
+      {
+        "name": "Nguyễn Cảnh Huỳnh",
+        "student_id": "B25CHKH071",
+        "role": "Thành viên"
+      },
+      {
+        "name": "Phạm Anh Tuấn",
+        "student_id": "B25CHKH086",
+        "role": "Thành viên"
+      }
+    ]
+  },
+  "shor": {
+    "n": 15,
+    "a": 2,
+    "gcd_initial": 1,
+    "order_r": 4,
+    "powers": [
+      1,
+      2,
+      4,
+      8,
+      1
+    ],
+    "x_half": 4,
+    "factor_1": 3,
+    "factor_2": 5,
+    "success": true,
+    "note": "Non-trivial factors recovered from gcd(a^(r/2) +/- 1, N)."
+  },
+  "rsa": {
+    "p": 5,
+    "q": 11,
+    "n": 55,
+    "phi": 40,
+    "e": 3,
+    "d": 27,
+    "message": 12,
+    "ciphertext": 23,
+    "decrypted": 12,
+    "attack_factor_1": 11,
+    "attack_factor_2": 5,
+    "recovered_d": 27,
+    "recovered_message": 12,
+    "attack_success": true,
+    "note": "RSA private exponent and plaintext were recovered after factoring n."
+  },
+  "ecc": {
+    "curve": {
+      "p": 17,
+      "a": 2,
+      "b": 2
+    },
+    "base_point": [
+      5,
+      1
+    ],
+    "private_k": 7,
+    "public_q": [
+      0,
+      6
+    ],
+    "base_order": 19,
+    "recovered_k_classical": 7,
+    "success": true,
+    "note": "The toy key is recovered by classical exhaustive search. In the report, Shor's discrete-log algorithm is analyzed as the polynomial-time quantum threat to real ECC groups."
+  },
+  "optimization": {
+    "required_category": 3,
+    "max_public_key": 1400,
+    "max_ciphertext": 1200,
+    "weights": {
+      "public_key": 0.35,
+      "secret_key": 0.15,
+      "ciphertext": 0.35,
+      "security": 0.15
+    },
+    "candidates": [
+      {
+        "name": "ML-KEM-512",
+        "category": 1,
+        "public_key": 800,
+        "secret_key": 1632,
+        "ciphertext": 768,
+        "feasible": false,
+        "score": 0.5773
+      },
+      {
+        "name": "ML-KEM-768",
+        "category": 3,
+        "public_key": 1184,
+        "secret_key": 2400,
+        "ciphertext": 1088,
+        "feasible": true,
+        "score": 0.6958
+      },
+      {
+        "name": "ML-KEM-1024",
+        "category": 5,
+        "public_key": 1568,
+        "secret_key": 3168,
+        "ciphertext": 1568,
+        "feasible": false,
+        "score": 0.85
+      }
+    ],
+    "selected": {
+      "name": "ML-KEM-768",
+      "category": 3,
+      "public_key": 1184,
+      "secret_key": 2400,
+      "ciphertext": 1088,
+      "feasible": true,
+      "score": 0.6958
+    },
+    "feasible": true,
+    "mathematical_model": "min sum_i c_i x_i; subject to sum_i x_i = 1, category_i x_i >= required, public_key_i x_i <= memory limit, ciphertext_i x_i <= network limit, x_i in {0,1}."
+  }
+}
